@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Camila Lima - Nutricionista</title>
+    <meta name="description" content="Nutrição personalizada com escuta, ajustes e acompanhamento real.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            DEFAULT: '#FDFBF7',
+                            dark: '#F8F5F0',
+                        },
+                        accent: {
+                            DEFAULT: '#C4A484',
+                            dark: '#A88261',
+                            light: '#E2D1C1'
+                        },
+                        charcoal: {
+                            DEFAULT: '#2D2B2A',
+                            muted: '#6B6560',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(186, 149, 117, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Utilities */
+        body {
+            background-color: theme('colors.cream.DEFAULT');
+            color: theme('colors.charcoal.DEFAULT');
+        }
+        
+        .soft-arch {
+            border-top-left-radius: 100rem;
+            border-top-right-radius: 100rem;
+        }
+
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        
+        /* Smooth reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden font-sans">
+
+    <!-- Top Bar -->
+    <div class="bg-white border-b border-gray-100 py-2 hidden md:block">
+        <div class="container mx-auto px-6 max-w-7xl flex justify-between items-center text-sm text-charcoal-muted">
+            <div class="flex items-center gap-2">
+                <i class="ph ph-map-pin text-accent"></i>
+                <span>Piracicaba, SP</span>
+            </div>
+            <div class="flex items-center gap-4 text-lg">
+                <a href="#" class="hover:text-accent transition-colors"><i class="ph ph-instagram-logo"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="ph ph-whatsapp-logo"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="ph ph-facebook-logo"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-accent/10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 max-w-7xl flex justify-between items-center py-4">
+            <!-- Logo -->
+            <a href="#" class="flex flex-col items-center">
+                <span class="font-serif text-2xl tracking-widest text-charcoal font-medium uppercase">Camila Lima</span>
+                <span class="text-[0.65rem] tracking-[0.3em] text-accent uppercase font-semibold mt-1">Nutricionista</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-8 items-center text-sm font-medium tracking-wide">
+                <a href="#home" class="hover:text-accent transition-colors">Home</a>
+                <a href="#quem-sou" class="hover:text-accent transition-colors">Quem Sou</a>
+                <a href="#para-quem-e" class="hover:text-accent transition-colors">Serviços</a>
+                <a href="#pacotes" class="hover:text-accent transition-colors">Pacotes</a>
+                <a href="#contato" class="hover:text-accent transition-colors">Contato</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-charcoal">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-cream z-40 transform translate-x-full transition-transform duration-300 md:hidden pt-24 px-6 flex flex-col gap-6 text-xl font-serif text-center">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-charcoal">
+                <i class="ph ph-x"></i>
+            </button>
+            <a href="#home" class="mobile-link hover:text-accent transition-colors">Home</a>
+            <a href="#quem-sou" class="mobile-link hover:text-accent transition-colors">Quem Sou</a>
+            <a href="#para-quem-e" class="mobile-link hover:text-accent transition-colors">Serviços</a>
+            <a href="#pacotes" class="mobile-link hover:text-accent transition-colors">Pacotes</a>
+            <a href="#contato" class="mobile-link hover:text-accent transition-colors">Contato</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden bg-cream-dark">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-accent/5 rounded-bl-[200px] -z-10"></div>
+        <div class="absolute top-20 right-20 w-64 h-64 border border-accent/20 rounded-full -z-10"></div>
+        
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <!-- Text Content -->
+                <div class="md:w-1/2 reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-accent/20 text-xs font-semibold tracking-widest text-accent uppercase mb-6">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        Nutrição Personalizada
+                    </div>
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-charcoal">
+                        Você não precisa de mais uma dieta. Precisa de um plano feito pra você.
+                    </h1>
+                    <p class="text-charcoal-muted text-base md:text-lg mb-8 leading-relaxed max-w-xl">
+                        Chega de seguir regras que não cabem na sua rotina. Aqui você tem um acompanhamento real, com escuta, com ajustes, e com alguém do seu lado em cada etapa.
+                    </p>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-full font-medium transition-colors duration-300 shadow-lg shadow-accent/20">
+                        <i class="ph ph-chat-circle-dots text-xl"></i>
+                        Agendar Consulta
+                    </a>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="md:w-1/2 relative reveal">
+                    <!-- Decor: Floating Salad Badge -->
+                    <div class="absolute top-10 -left-10 md:-left-20 bg-white p-2 rounded-2xl shadow-soft border border-accent/10 z-10 animate-bounce" style="animation-duration: 3s;">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=200&auto=format&fit=crop" alt="Salad" class="w-24 h-24 object-cover rounded-xl">
+                    </div>
+                    
+                    <!-- Main Image container with Arch -->
+                    <div class="relative w-full max-w-md mx-auto">
+                        <div class="absolute inset-0 bg-accent-light soft-arch transform translate-x-4 translate-y-4 -z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop" alt="Dra. Camila Lima" class="w-full h-auto object-cover soft-arch shadow-xl border-4 border-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Pain-Points Grid -->
+    <section id="para-quem-e" class="py-24 bg-cream">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-900/5 hover:shadow-soft transition-shadow reveal">
+                    <div class="text-3xl mb-4">🥗</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Cansada de dietas que não duram</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Você começa, vai bem por duas semanas, depois volta ao ponto de partida. O problema não é você, é a dieta.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-900/5 hover:shadow-soft transition-shadow reveal" style="transition-delay: 100ms;">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Quer mais energia no dia a dia</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Acorda cansada, depende de café pra funcionar e sente queda à tarde.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-900/5 hover:shadow-soft transition-shadow reveal" style="transition-delay: 200ms;">
+                    <div class="text-3xl mb-4">👨‍👩‍👧‍👦</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Mudar a alimentação da família</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Cozinhar saudável pra todo mundo, sem fazer duas refeições diferentes.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-900/5 hover:shadow-soft transition-shadow reveal" style="transition-delay: 300ms;">
+                    <div class="text-3xl mb-4">🤰</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Está grávida ou tentando</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">A nutrição tem um papel enorme na fertilidade, na gestação saudável e no pós-parto.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-900/5 hover:shadow-soft transition-shadow reveal" style="transition-delay: 400ms;">
+                    <div class="text-3xl mb-4">🕊️</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Relação mais leve com a comida</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Sem medo de comer, sem contar caloria de tudo e sem sentir culpa no fim do dia.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-900/5 hover:shadow-soft transition-shadow reveal" style="transition-delay: 500ms;">
+                    <div class="text-3xl mb-4">🥑</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Plano 100% Adaptável</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Sua rotina é corrida? Ajustamos cada refeição ao seu estilo de vida real.</p>
+                </div>
+            </div>
+
+            <!-- Highlight Quote Banner -->
+            <div class="bg-white rounded-3xl p-10 md:p-14 text-center max-w-4xl mx-auto shadow-sm border border-accent/10 reveal">
+                <p class="font-serif text-2xl md:text-3xl italic text-charcoal mb-8 leading-snug">
+                    "Se você se identificou com pelo menos um desses pontos, o acompanhamento foi feito pra você."
+                </p>
+                <a href="#pacotes" class="inline-block bg-accent-light/30 text-accent-dark hover:bg-accent-light/50 px-8 py-3 rounded-full font-medium transition-colors duration-300">
+                    Ver Pacotes Disponíveis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Sou Section -->
+    <section id="quem-sou" class="py-24 bg-cream-dark">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <!-- Text -->
+                <div class="md:w-1/2 reveal">
+                    <h2 class="font-serif text-4xl md:text-5xl mb-6">Olá, sou a Camila</h2>
+                    <div class="space-y-4 text-charcoal-muted mb-8 text-base md:text-lg leading-relaxed">
+                        <p>
+                            Sou nutricionista e estou aqui por uma razão simples: acredito que comer bem não deveria ser complicado, punitivo ou cheio de regras impossíveis de seguir.
+                        </p>
+                        <p>
+                            Minha formação é pela Universidade Federal do Triângulo Mineiro, com especializações em saúde integrativa, fitoterapia e educação nutricional. Mas o que realmente me diferencia é a forma como atendo: com escuta real, sem julgamentos, e com um plano que respeita quem você é.
+                        </p>
+                        
+                        <!-- Highlight Quote Box -->
+                        <div class="border-l-4 border-accent pl-6 py-2 my-8">
+                            <p class="font-serif italic text-xl text-charcoal">
+                                "A nutrição vai muito além do emagrecer. É sobre energia, autoestima, saúde mental e qualidade de vida. É sobre encontrar um jeito de comer que você consiga manter por anos."
+                            </p>
+                        </div>
+                        
+                        <p>
+                            Cada consulta começa com uma pergunta simples: qual é a sua rotina? Dali, construímos algo que funciona de verdade, sem sacrifícios extremos e sem fórmulas prontas.
+                        </p>
+                    </div>
+
+                    <!-- Academic Badge -->
+                    <div class="bg-white p-5 rounded-2xl flex items-start gap-4 shadow-sm border border-amber-900/5">
+                        <div class="bg-accent/10 p-3 rounded-xl text-accent text-2xl">
+                            <i class="ph ph-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-charcoal mb-1">Formação e especializações</h4>
+                            <p class="text-xs text-charcoal-muted leading-relaxed">
+                                Graduada pela UFTM. Pós-graduada em Nutrição Integrativa, Fitoterapia, Nutrição nos Ciclos da Vida e Educação Nutricional.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="md:w-1/2 reveal">
+                    <div class="relative max-w-md mx-auto">
+                        <div class="absolute -inset-4 bg-accent/10 rounded-tr-[100px] rounded-bl-[100px] -z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1594824432258-005a76721590?q=80&w=800&auto=format&fit=crop" alt="Camila Lima no consultório" class="w-full h-auto object-cover rounded-2xl rounded-br-[100px] shadow-lg border-4 border-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differential Pillars -->
+    <section class="py-24 bg-cream">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl mb-4">Um cuidado que vai além do plano alimentar</h2>
+                <p class="text-charcoal-muted text-lg">Aqui você não recebe um PDF genérico. Você tem uma profissional do seu lado, acompanhando sua evolução.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pill 1 -->
+                <div class="bg-white p-8 rounded-2xl text-center shadow-sm border border-amber-900/5 hover:-translate-y-1 transition-transform reveal">
+                    <h3 class="font-bold text-lg mb-3">Escuta De Verdade</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Atendimento empático e sem julgamentos. Entendo sua realidade antes de propor qualquer mudança.</p>
+                </div>
+                <!-- Pill 2 -->
+                <div class="bg-white p-8 rounded-2xl text-center shadow-sm border border-amber-900/5 hover:-translate-y-1 transition-transform reveal" style="transition-delay: 100ms;">
+                    <h3 class="font-bold text-lg mb-3">Nada De Fórmula Pronta</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Cardápio individualizado, feito sob medida para seus gostos, horários e condições financeiras.</p>
+                </div>
+                <!-- Pill 3 -->
+                <div class="bg-white p-8 rounded-2xl text-center shadow-sm border border-amber-900/5 hover:-translate-y-1 transition-transform reveal" style="transition-delay: 200ms;">
+                    <h3 class="font-bold text-lg mb-3">Visão Integrativa</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Considera seus exames de sangue, qualidade do sono, níveis de estresse e rotina diária.</p>
+                </div>
+                <!-- Pill 4 -->
+                <div class="bg-white p-8 rounded-2xl text-center shadow-sm border border-amber-900/5 hover:-translate-y-1 transition-transform reveal" style="transition-delay: 300ms;">
+                    <h3 class="font-bold text-lg mb-3">Suporte Entre Consultas</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Dúvidas respondidas diretamente via WhatsApp para você não se sentir perdida no processo.</p>
+                </div>
+                <!-- Pill 5 -->
+                <div class="bg-white p-8 rounded-2xl text-center shadow-sm border border-amber-900/5 hover:-translate-y-1 transition-transform reveal" style="transition-delay: 400ms;">
+                    <h3 class="font-bold text-lg mb-3">Baseada Em Ciência</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Condutas fundamentadas em artigos científicos recentes e não em modismos da internet.</p>
+                </div>
+                <!-- Pill 6 -->
+                <div class="bg-white p-8 rounded-2xl text-center shadow-sm border border-amber-900/5 hover:-translate-y-1 transition-transform reveal" style="transition-delay: 500ms;">
+                    <h3 class="font-bold text-lg mb-3">Resultado Sustentável</h3>
+                    <p class="text-sm text-charcoal-muted leading-relaxed">Foco em mudança de hábitos duradoura, para você dar adeus ao efeito sanfona para sempre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pacotes" class="py-24 bg-cream-dark relative">
+        <!-- Decor background -->
+        <div class="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl mb-4">Encontre o pacote certo pra você</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+                <!-- Pacote 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-amber-900/5 reveal">
+                    <h3 class="font-serif text-2xl font-bold mb-2">Consulta Avulsa</h3>
+                    <p class="text-sm text-charcoal-muted mb-6">Para quem busca um direcionamento inicial e ajustes pontuais.</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Avaliação completa (1h a 1h30)</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Plano alimentar individualizado</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Análise de exames laboratoriais</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-charcoal-muted/50">
+                            <i class="ph ph-minus text-charcoal-muted/30 text-lg mt-0.5"></i>
+                            <span>Retorno incluso</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="block w-full py-3 px-4 border border-accent text-accent hover:bg-accent hover:text-white rounded-full text-center font-medium transition-colors">Agendar</a>
+                </div>
+
+                <!-- Pacote 2 (Mais Vendido) -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border-2 border-accent relative transform md:-translate-y-4 reveal" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                        Mais Vendido
+                    </div>
+                    
+                    <h3 class="font-serif text-2xl font-bold mb-2">Acompanhamento Trimestral</h3>
+                    <p class="text-sm text-charcoal-muted mb-6">O tempo ideal para ver mudanças reais no corpo e nos hábitos.</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-sm font-medium">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>3 Consultas mensais completas</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Atualização do plano a cada mês</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Suporte contínuo via WhatsApp</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Material de apoio exclusivo</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="block w-full py-3 px-4 bg-accent text-white hover:bg-accent-dark rounded-full text-center font-medium transition-colors shadow-md">Agendar Trimestral</a>
+                </div>
+
+                <!-- Pacote 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-amber-900/5 reveal" style="transition-delay: 200ms;">
+                    <h3 class="font-serif text-2xl font-bold mb-2">Plano Anual VIP</h3>
+                    <p class="text-sm text-charcoal-muted mb-6">Cuidado contínuo para manter os resultados a longo prazo.</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Consultas a cada 45 dias (8 sessões)</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Todos os benefícios do trimestral</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Avaliação de bioimpedância inclusa</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <i class="ph ph-check-circle text-accent text-lg mt-0.5"></i>
+                            <span>Prioridade de agendamento</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="block w-full py-3 px-4 border border-accent text-accent hover:bg-accent hover:text-white rounded-full text-center font-medium transition-colors">Saber Mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-white py-12 border-t border-gray-100">
+        <div class="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <span class="font-serif text-xl tracking-widest text-charcoal font-medium uppercase mb-2">Camila Lima</span>
+                <p class="text-sm text-charcoal-muted">CRN 3: 00000</p>
+            </div>
+            
+            <div class="flex gap-4 text-2xl text-charcoal-muted">
+                <a href="#" class="hover:text-accent transition-colors"><i class="ph ph-instagram-logo"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="ph ph-whatsapp-logo"></i></a>
+                <a href="mailto:contato@camilalima.com" class="hover:text-accent transition-colors"><i class="ph ph-envelope-simple"></i></a>
+            </div>
+            
+            <div class="text-sm text-charcoal-muted text-center md:text-right">
+                <p>&copy; 2026 Dra. Camila Lima. Todos os direitos reservados.</p>
+                <p class="text-xs mt-1 opacity-70">Desenvolvido com 🤎 para a saúde.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center animate-bounce" style="animation-duration: 2s;" aria-label="Contato via WhatsApp">
+        <i class="ph ph-whatsapp-logo text-3xl"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('translate-x-full')) {
+                mobileMenu.classList.remove('translate-x-full');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>
